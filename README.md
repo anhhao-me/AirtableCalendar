@@ -1,16 +1,24 @@
 # AirtableCalendar
 
-A new Flutter project.
+A Airtable Calendar App for easy view.
 
-## Getting Started
+## Usage
 
-This project is a starting point for a Flutter application.
+This project was build with Flutter.
 
-A few resources to get you started if this is your first Flutter project:
+To run:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+```bash
+flutter run
+```
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Design
+
+At the first, we must create a new table in Airtable with following structure.
+
+- `Name`: Single line text - Name of task.
+- `Start`: Date | ISO | 24 hour - The time to start task.
+- `End`: Date | ISO | 24 hour - The time to finish task.
+- `Priority`: Integer - 0 to 10 priority levels with 0 is the highest urgent.
+- `Done`: Checkbox - Task was done or not.
+- `Note`: More info about task.
