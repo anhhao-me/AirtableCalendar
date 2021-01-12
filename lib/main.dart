@@ -1,3 +1,4 @@
+import 'package:AirtableCalendar/pages/enter.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:AirtableCalendar/pages/loader.dart';
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Builder(
       builder: (BuildContext context) => MaterialApp(
-        title: 'Chủ cửa hàng - 72loca.vn',
+        title: 'Airtable Calendar',
         theme: ThemeData(
           brightness: Brightness.light,
           primaryColor: Color(0xffc33332),
@@ -24,7 +25,8 @@ class MyApp extends StatelessWidget {
         ),
         home: LoaderPage(),
         routes: {
-          '/home': (BuildContext context) => HomePage()
+          '/home': (BuildContext context) => HomePage(),
+          '/enter': (BuildContext context) => EnterPage(),
         },
       )
     );
