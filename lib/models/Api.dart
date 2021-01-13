@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter/foundation.dart';
 
 class Api {
   String apiKey;
@@ -20,6 +19,8 @@ class Api {
     try {
       var res = await this.makeGet('');
       print(res);
+      if (res == null)
+        return false;
     } catch(_) {
       return false;
     }
@@ -79,8 +80,6 @@ class Api {
     if ((res.statusCode / 100).floor() == 2){
       return jsonDecode(res.body);
     }
-
-    print(res.body);
     return null;
   }
 }

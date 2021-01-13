@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:AirtableCalendar/widgets/spinner.dart';
 import 'package:AirtableCalendar/models/Api.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class LoaderPage extends StatefulWidget {
   @override
@@ -38,7 +37,7 @@ class _LoaderPageState extends State<LoaderPage> {
   Future<void> navigationPage() async {
     Api api = new Api();
     await api.init();
-
+    
     if (!await api.check()){
       Navigator.of(context).pushReplacementNamed('/enter');
     } else {
