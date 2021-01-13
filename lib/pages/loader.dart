@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:AirtableCalendar/widgets/spinner.dart';
+import 'package:AirtableCalendar/models/Api.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoaderPage extends StatefulWidget {
@@ -35,11 +36,10 @@ class _LoaderPageState extends State<LoaderPage> {
   }
 
   Future<void> navigationPage() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    var apiKey = prefs.getString('apiKey');
-    var tableUrl = prefs.getString('tableUrl');
+    Api api = new Api();
+    await api.init();
 
-    if (apiKey == null || tableUrl == null){
+    if (!await api.check()){
       Navigator.of(context).pushReplacementNamed('/enter');
     } else {
       Navigator.of(context).pushReplacementNamed('/home');

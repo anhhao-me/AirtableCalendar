@@ -1,5 +1,6 @@
 import 'package:AirtableCalendar/widgets/spinner.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class EnterPage extends StatefulWidget {
   @override
@@ -81,40 +82,13 @@ class _EnterPageState extends State<EnterPage> {
 
   Future<void> _verify(BuildContext context, String tableUrl, String apiKey) async {
     FocusScope.of(context).unfocus();
-
-    // AuthModel authModel = AuthModel();
-    // String token = await authModel.login(email, password);
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('apiKey', apiKey);
+    prefs.setString('tableUrl', tableUrl);
 
     setState(() {
       _isLoad = false;
-
-      // if (token == null){
-      //   Scaffold.of(context).showSnackBar(
-      //     SnackBar(
-      //       duration: Duration(seconds: 3 ),
-      //       content: Text('Email hoặc mật khẩu không đúng!'),
-      //       action: SnackBarAction(
-      //         textColor: Colors.white,
-      //         label: 'Đóng',
-      //         onPressed: () => Scaffold.of(context).hideCurrentSnackBar()
-      //       )
-      //     )
-      //   );
-      // } else {
-      //   Scaffold.of(context).showSnackBar(
-      //     SnackBar(
-      //       duration: Duration(seconds: 3 ),
-      //       content: Text('Đăng nhập thành công!'),
-      //       action: SnackBarAction(
-      //         textColor: Colors.white,
-      //         label: 'Đóng',
-      //         onPressed: () => Scaffold.of(context).hideCurrentSnackBar()
-      //       )
-      //     )
-      //   );
-
-      //   Navigator.of(context).pushReplacementNamed('/');
-      // }
+      Navigator.of(context).pushReplacementNamed('/');
     });
   }
 }

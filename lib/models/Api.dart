@@ -1,12 +1,34 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter/foundation.dart';
 
 class Api {
-  final String _apiHost = 'https://beta-api.langf.vn';
+  String apiKey;
+  String tableUrl;
+
+  Future<void> init() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    apiKey = prefs.getString('apiKey');
+    tableUrl = prefs.getString('tableUrl');
+  }
+
+  Future<bool> check() async {
+    if (apiKey == null || tableUrl == null || apiKey == '' || tableUrl == '')
+      return false;
+
+    try {
+      var res = await this.makeGet('');
+      print(res);
+    } catch(_) {
+      return false;
+    }
+
+    return true;
+  }
 
   String getApi(path){
-    return _apiHost + path;
+    return tableUrl + path;
   }
 
   Future<Map<String, dynamic>> makePost(String path, { Map<String, String> headers, Map<String, dynamic> payload }) async {
@@ -34,8 +56,6 @@ class Api {
     if ((res.statusCode / 100).floor() == 2){
       return jsonDecode(res.body);
     }
-
-    print(res.body);
     return null;
   }
 
@@ -49,10 +69,7 @@ class Api {
       'Accept': 'application/json'
     };
 
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    if (prefs.getString('auth-token') != null){
-      defaultHeaders.addAll(<String, String> {'Authorization': prefs.getString('auth-token')});
-    }
+    defaultHeaders.addAll(<String, String> {'Authorization': 'Bearer ' + apiKey});
     
     http.Response res = await http.get(
       getApi(path), 
