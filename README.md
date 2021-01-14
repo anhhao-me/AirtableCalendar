@@ -12,7 +12,7 @@ To run:
 flutter run
 ```
 
-## Design
+## Table Design
 
 At the first, we must create a new table in Airtable with following structure.
 
@@ -22,3 +22,7 @@ At the first, we must create a new table in Airtable with following structure.
 - `Priority`: Integer - 0 to 10 priority levels with 0 is the highest urgent.
 - `Done`: Checkbox - Task was done or not.
 - `Note`: More info about task.
+
+## UI Design
+
+![UI Design](design/ui.png) ![UI Design](design/ui-menu.png)
