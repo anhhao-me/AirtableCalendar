@@ -37,6 +37,11 @@ class _LoaderPageState extends State<LoaderPage> {
   Future<void> navigationPage() async {
     Api api = new Api();
     await api.init();
+
+    /* DEVELOPMENT */
+    Navigator.of(context).pushReplacementNamed('/home');
+    return;
+    /* END DEVELOPMENT */
     
     if (!await api.check()){
       Navigator.of(context).pushReplacementNamed('/enter');
