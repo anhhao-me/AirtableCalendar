@@ -34,32 +34,41 @@ class _HomePageState extends State<HomePage> {
         ]
       ),
       drawer: Drawer(
-        child: ListView(
-          // Important: Remove any padding from the ListView.
-          padding: EdgeInsets.zero,
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
           children: <Widget>[
             DrawerHeader(
-              child: Text('Drawer Header'),
-              decoration: BoxDecoration(
-                color: Colors.blue,
+              child: Padding(
+                padding: EdgeInsets.only(
+                  top: 10.0,
+                  left: 30.0,
+                  right: 30.0,
+                  bottom: 10.0
+                ),
+                child: Image(image: AssetImage('assets/images/logo.png'))
               ),
             ),
-            ListTile(
-              title: Text('Item 1'),
-              onTap: () {
-                // Update the state of the app.
-                // ...
-              },
-            ),
-            ListTile(
-              title: Text('Item 2'),
-              onTap: () {
-                // Update the state of the app.
-                // ...
-              },
+            Expanded(
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: ListTile(
+                  title: Text(
+                    'Logout',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black.withOpacity(0.6)
+                    ),
+                  ),
+                  onTap: () => setState(() {
+                    _isLoad = true;
+                    _logout(context);
+                  }),
+                ),     
+              ),
             ),
           ],
-        ),
+        )
       ),
       body: Stack(
         children: <Widget> [
